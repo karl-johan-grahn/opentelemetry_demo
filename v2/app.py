@@ -3,7 +3,6 @@ from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.sdk.trace.export import ConsoleSpanExporter
 
-from random import randint
 from flask import Flask, request
 
 # API entry point that holds configuration
@@ -19,17 +18,14 @@ tracer = trace.get_tracer(__name__)
 app = Flask(__name__)
 
 
-@app.route("/roll")
-def roll():
-    with tracer.start_as_current_span("request_to_roll_the_dice"):
-        sides = int(request.args.get('sides'))
-        rolls = int(request.args.get('rolls'))
-        return roll_sum(sides, rolls)
+@app.route("/add")
+def add():
+    with tracer.start_as_current_span("request_to_add_numbers"):
+        first = int(request.args.get('first'))
+        second = int(request.args.get('second'))
+        return str(sum_numbers(first, second))
 
 
-def roll_sum(sides, rolls):
-    sum = 0
-    for r in range(0, rolls):
-        result = randint(1, sides)
-        sum += result
-    return str(sum)
+def sum_numbers(first: int, second: int) -> int:
+    sum = first + second
+    return sum
