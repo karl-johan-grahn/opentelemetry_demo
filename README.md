@@ -1,6 +1,4 @@
-# OpenTelemetry and Python - A complete instrumentation guide
-
-Based on the blog [OpenTelemetry and Python: A complete instrumentation guide](https://www.cncf.io/blog/2022/04/22/opentelemetry-and-python-a-complete-instrumentation-guide/).
+# Observability with OpenTelemetry in Python - A quick instrumentation guide
 
 Observability key concepts:
 
@@ -10,7 +8,17 @@ Observability key concepts:
 
 OpenTelemetry semantics: Span, trace
 
-Create virtual environment and then work on it:
+## Preparation
+
+Install Python
+
+Create a virtual environment using for example [mkvirtenv](https://virtualenvwrapper.readthedocs.io/en/latest/)
+
+```sh
+pip3 install -r requirements.txt
+```
+
+and then work on it:
 
 ```sh
 mkvirtualenv opentelemetry
