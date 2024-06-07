@@ -36,9 +36,21 @@ opentelemetry-instrument --traces_exporter console flask run
 ## Mix - v4
 Create exception and observe auto trace:
 ```sh
+opentelemetry-instrument --traces_exporter console flask run
+
 curl 'http://127.0.0.1:5000/roll?sides=6&rolls=a'
 ```
 
 ## Grafana Tempo
 Sample 100% of requests:
 https://grafana.com/oss/tempo/
+
+```sh
+cd tempo/example/docker-compose/local
+
+docker compose up -d
+
+docker compose ps
+
+docker compose down
+```
