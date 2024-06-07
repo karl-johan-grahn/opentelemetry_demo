@@ -1,7 +1,6 @@
 from opentelemetry import trace
 from opentelemetry.sdk.trace import TracerProvider
 
-from random import randint
 from flask import Flask, request
 
 provider = TracerProvider()

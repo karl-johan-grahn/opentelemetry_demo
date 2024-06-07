@@ -3,7 +3,6 @@ from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.sdk.trace.export import ConsoleSpanExporter
 
-from random import randint
 from flask import Flask, request
 
 # API entry point that holds configuration
