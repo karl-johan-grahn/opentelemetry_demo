@@ -1,7 +1,6 @@
 from opentelemetry import trace
 from opentelemetry.sdk.trace import TracerProvider
 
-from random import randint
 from flask import Flask, request
 
 provider = TracerProvider()
@@ -10,21 +9,25 @@ tracer = trace.get_tracer(__name__)
 
 app = Flask(__name__)
 
-@app.route("/roll")
-def roll():
-    sides = int(request.args.get('sides'))
-    rolls = int(request.args.get('rolls'))
-    return roll_sum(sides,rolls)
 
-def roll_sum(sides, rolls):
-    with tracer.start_as_current_span("roll_sum"):  
+@app.route("/add")
+def add():
+    first = int(request.args.get('first'))
+    second = int(request.args.get('second'))
+    return str(sum_numbers(first, second))
+
+
+def sum_numbers(first: int, second: int) -> int:
+    with tracer.start_as_current_span("add_sum"):
         span = trace.get_current_span()
-        sum = 0
-        for r in range(0,rolls):
-            result = randint(1,sides)
-            span.add_event( "log", {
-                "roll.sides": sides,
-                "roll.result": result,
-            })
-            sum += result
-        return str(sum)
+        span.add_event("log", {
+            "add.first": first,
+            "add.second": second,
+        })
+        sum = first + second
+        return sum
+
+
+if __name__ == "__main__":
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=5000)

@@ -1,17 +1,20 @@
-from random import randint
 from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route("/roll")
-def roll():
-    sides = int(request.args.get('sides'))
-    rolls = int(request.args.get('rolls'))
-    return roll_sum(sides,rolls)
 
-def roll_sum(sides, rolls):
-    sum = 0
-    for r in range(0,rolls):
-        result = randint(1,sides)
-        sum += result
-    return str(sum)
+@app.route("/add")
+def add():
+    first = int(request.args.get('first'))
+    second = int(request.args.get('second'))
+    return str(sum_numbers(first, second))
+
+
+def sum_numbers(first: int, second: int) -> int:
+    sum = first + second
+    return sum
+
+
+if __name__ == "__main__":
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=5000)
