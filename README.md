@@ -1,40 +1,40 @@
-# Observability with OpenTelemetry in Python - An instrumentation guide
+# Observability With Opentelemetry in Python - An Instrumentation Guide
 
-Observability key concepts:
+Observability key data signals:
 
 * Logs
-    * Descriptions
-    * Example:
+    * Descriptive verbose information about events
+    * Examples:
         * `Saturday was a sunny day`
         * `Resolving deltas: 100% (2/2), completed with 2 local objects.`
 * Metrics
     * Measurements
-    * Example:
+    * Examples:
         * Blood pressure
         * Temperature
         * Response code
 * Traces
-    * Sequence of events
+    * Sequences of event information
     * Example:
-        * Someone opened the door, then the light got turned on, then the door was closed
+        * Someone opened a door, then light got turned on, then door was closed
         * Sample span:
             ```json
             {
                 "name": "sample_span",
                 "context": {
-                    "trace_id": "0x5b8aa5a2d2c872e8321cf37308d69df2",
-                    "span_id": "0x051581bf3cb55c13"
+                    "trace_id": "0x4b8aa5a2d2c82548331cf37ff8d69df2",
+                    "span_id": "0x054441bf3lik5c13"
                 },
                 "parent_id": null,
-                "start_time": "2022-04-29T18:52:58.114201Z",
-                "end_time": "2022-04-29T18:52:58.114687Z",
+                "start_time": "2023-04-30T18:52:58.113201Z",
+                "end_time": "2023-04-30T18:52:58.113687Z",
                 "attributes": {
                     "http.route": "sample_route"
                 },
                 "events": [
                     {
-                        "name": "Door opened",
-                        "timestamp": "2022-04-29T18:52:58.114561Z",
+                        "name": "Calculation",
+                        "timestamp": "2022-04-30T18:52:58.113561Z",
                         "attributes": {
                             "event_attributes": 1
                         }
@@ -42,67 +42,115 @@ Observability key concepts:
                 ]
             }
             ```
-
-OpenTelemetry semantics: Span, trace
+    * OpenTelemetry semantics:
+        * Span
+        * Trace - collection of connected spans
 
 ## Preparation
 
-Install Python
+To prepare your environment for this demo:
 
-Create a virtual environment using for example [mkvirtenv](https://virtualenvwrapper.readthedocs.io/en/latest/) and then work on it:
+1. Install Python
+1. Create a virtual environment using for example [mkvirtenv](https://virtualenvwrapper.readthedocs.io/en/latest/):
 
-```sh
-mkvirtualenv opentelemetry
-workon opentelemetry
-```
+    ```sh
+    mkvirtualenv opentelemetry
+    ```
 
-Install requirements:
+1. Work on the environment:
 
-```sh
-pip3 install -r requirements.txt
-```
+    ```sh
+    workon opentelemetry
+    ```
 
-## No telemetry at all - [v1](./v1/)
+1. If using VSCode and running from there, select the virtual environment in the lower right corner of the editor
+1. Install Python requirements which includes OpenTelemetry:
+
+    ```sh
+    pip3 install -r requirements.txt
+    ```
+
+## No Telemetry at All - [v1](./v1/)
+
+Run the server application:
 
 ```sh
 python app.py
+```
+
+Send a request:
+
+```sh
 curl 'http://127.0.0.1:5000/add?first=6&second=1'
 ```
 
-## Manual instrumentation - [v2](./v2/)/[v3](./v3/)
+Watch the server and note that no telemetry signals are emitted, as expected.
 
-Run and observe the trace.
+## Manual Instrumentation - [v2](./v2/) and [v3](./v3/)
 
-## Automatic - [v1](./v1/)
+Run the server application:
 
-Python, Java, Node, Ruby, and .NET
+```sh
+python app.py
+```
+
+Send a request:
+
+```sh
+curl 'http://127.0.0.1:5000/add?first=6&second=1'
+```
+
+Watch the server and observe that a trace signal is emitted.
+
+## Automatic Instrumentation of [v1](./v1/)
+
+Automatic instrumentation is available for Python, Java, Node, Ruby, and .NET.
 
 Python supported frameworks are listed in the [opentelemetry-python-contrib](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation) repository.
 
+Do auto-instrumentation of the application:
+
 ```sh
 opentelemetry-instrument --traces_exporter console --metrics_exporter console python app.py
 ```
 
-## Mix - [v4](./v4/)
+Send a request:
 
-Create exception and observe auto trace:
+```sh
+curl 'http://127.0.0.1:5000/add?first=6&second=1'
+```
+
+Watch the server and observe that a trace signal is emitted.
+
+## Mix of Manual and Automatic Instrumentation - [v4](./v4/)
+
+Do auto-instrumentation of the application:
 
 ```sh
 opentelemetry-instrument --traces_exporter console --metrics_exporter console python app.py
+```
 
+Create an exception by using the wrong value for a parameter:
+
+```sh
 curl 'http://127.0.0.1:5000/add?first=6&second=a'
 ```
 
-## Grafana Tempo
+Watch the server and observe that a trace signal is emitted, with info about the exception.
+
+## Sample All Requests
 
 Sample 100% of requests using [Grafana Tempo](https://grafana.com/oss/tempo/):
 
-```sh
-cd tempo/example/docker-compose/local
+1. Clone the [repo](https://github.com/grafana/tempo)
+1. Run the example:
 
-docker compose up -d
+    ```sh
+    cd tempo/example/docker-compose/local
 
-docker compose ps
+    docker compose up -d
 
-docker compose down
-```
+    docker compose ps
+
+    docker compose down
+    ```
