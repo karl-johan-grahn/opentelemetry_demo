@@ -1,4 +1,4 @@
-# Observability With Opentelemetry in Python - An Instrumentation Guide
+# Observability With OpenTelemetry in Python - An Instrumentation Guide
 
 Observability key data signals:
 
@@ -18,6 +18,7 @@ Observability key data signals:
     * Example:
         * Someone opened a door, then light got turned on, then door was closed
         * Sample span:
+
             ```json
             {
                 "name": "sample_span",
@@ -42,6 +43,7 @@ Observability key data signals:
                 ]
             }
             ```
+
     * OpenTelemetry semantics:
         * Span
         * Trace - collection of connected spans
@@ -63,7 +65,7 @@ To prepare your environment for this demo:
     workon opentelemetry
     ```
 
-1. If using VSCode and running from there, select the virtual environment in the lower right corner of the editor
+1. If using Visual Studio Code and running from there, select the virtual environment in the lower right corner of the editor
 1. Install Python requirements which includes OpenTelemetry:
 
     ```sh
