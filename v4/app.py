@@ -1,5 +1,4 @@
 from opentelemetry import trace
-from opentelemetry.sdk.trace import TracerProvider
 
 from flask import Flask, request
 
