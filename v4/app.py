@@ -2,8 +2,7 @@ from opentelemetry import trace
 
 from flask import Flask, request
 
-# Now no traces are sent to console unless we specify that as exporter
-# with opentelemetry-instrument, because a consumer has not been configured
+# No traces are sent to the console unless we specify a span processor
 tracer = trace.get_tracer(__name__)
 
 app = Flask(__name__)
