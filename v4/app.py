@@ -1,10 +1,8 @@
 from opentelemetry import trace
-from opentelemetry.sdk.trace import TracerProvider
 
 from flask import Flask, request
 
-provider = TracerProvider()
-trace.set_tracer_provider(provider)
+# No traces are sent to the console unless we specify a span processor
 tracer = trace.get_tracer(__name__)
 
 app = Flask(__name__)
@@ -30,4 +28,4 @@ def sum_numbers(first: int, second: int) -> int:
 
 if __name__ == "__main__":
     from waitress import serve
-    serve(app, host="0.0.0.0", port=5000)
+    serve(app, host="0.0.0.0", port=3000)

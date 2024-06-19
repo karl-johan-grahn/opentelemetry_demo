@@ -83,7 +83,7 @@ python app.py
 Send a request:
 
 ```sh
-curl 'http://127.0.0.1:5000/add?first=6&second=1'
+curl 'http://127.0.0.1:3000/add?first=6&second=1'
 ```
 
 Watch the server and note that no telemetry signals are emitted, as expected.
@@ -99,7 +99,7 @@ python app.py
 Send a request:
 
 ```sh
-curl 'http://127.0.0.1:5000/add?first=6&second=1'
+curl 'http://127.0.0.1:3000/add?first=6&second=1'
 ```
 
 Watch the server and observe that a trace signal is emitted.
@@ -119,7 +119,7 @@ opentelemetry-instrument --traces_exporter console --metrics_exporter console py
 Send a request:
 
 ```sh
-curl 'http://127.0.0.1:5000/add?first=6&second=1'
+curl 'http://127.0.0.1:3000/add?first=6&second=1'
 ```
 
 Watch the server and observe that a trace signal is emitted.
@@ -135,7 +135,7 @@ opentelemetry-instrument --traces_exporter console --metrics_exporter console py
 Create an exception by using the wrong value for a parameter:
 
 ```sh
-curl 'http://127.0.0.1:5000/add?first=6&second=a'
+curl 'http://127.0.0.1:3000/add?first=6&second=a'
 ```
 
 Watch the server and observe that a trace signal is emitted, with info about the exception.
@@ -149,6 +149,8 @@ Sample 100% of requests using [Grafana Tempo](https://grafana.com/oss/tempo/):
 
     ```sh
     cd tempo/example/docker-compose/local
+
+    docker login ghcr.io
 
     docker compose up -d
 

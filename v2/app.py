@@ -7,7 +7,7 @@ from flask import Flask, request
 
 # API entry point that holds configuration
 provider = TracerProvider()
-# Defines the method of sending the spans onwards,
+# Defines the method of sending the spans onwards to a consumer,
 # in this case to the console, otherwise usually to a collector
 processor = BatchSpanProcessor(ConsoleSpanExporter())
 provider.add_span_processor(processor)
@@ -33,4 +33,4 @@ def sum_numbers(first: int, second: int) -> int:
 
 if __name__ == "__main__":
     from waitress import serve
-    serve(app, host="0.0.0.0", port=5000)
+    serve(app, host="0.0.0.0", port=3000)
