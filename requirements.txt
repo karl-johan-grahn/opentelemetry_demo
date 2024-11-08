@@ -42,7 +42,7 @@ opentelemetry-sdk==1.25.0
 opentelemetry-semantic-conventions==0.46b0
 opentelemetry-test-utils==0.46b0
 opentelemetry-util-http==0.46b0
-packaging==24.0
+packaging==24.2
 pluggy==1.5.0
 protobuf==4.25.3
 pycodestyle==2.11.1
