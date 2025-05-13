@@ -3,7 +3,7 @@ blinker==1.8.2
 certifi==2024.7.4
 charset-normalizer==3.3.2
 click==8.1.7
-Deprecated==1.2.14
+Deprecated==1.2.18
 flake8==7.2.0
 Flask==3.0.3
 googleapis-common-protos==1.63.1
