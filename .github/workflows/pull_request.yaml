@@ -28,3 +28,15 @@ jobs:
           checkName: "Python Lint"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  python-requirements-install:
+    name: Install requirements
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install the requirements
+        run: pip3 install -r requirements.txt
