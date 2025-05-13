@@ -44,7 +44,7 @@ opentelemetry-test-utils==0.46b0
 opentelemetry-util-http==0.46b0
 packaging==24.2
 pluggy==1.5.0
-protobuf==4.25.7
+protobuf==6.30.2
 pycodestyle==2.13.0
 pyflakes==3.2.0
 pytest==8.2.2
