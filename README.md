@@ -53,7 +53,7 @@ Observability key data signals:
 To prepare your environment for this demo:
 
 1. Install Python
-1. Create a virtual environment using for example [mkvirtenv](https://virtualenvwrapper.readthedocs.io/en/latest/):
+1. Create a virtual environment using for example [`mkvirtenv`](https://virtualenvwrapper.readthedocs.io/en/latest/):
 
     ```sh
     mkvirtualenv opentelemetry
