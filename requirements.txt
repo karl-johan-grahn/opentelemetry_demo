@@ -5,7 +5,7 @@ charset-normalizer==3.4.2
 click==8.2.0
 Deprecated==1.2.18
 flake8==7.2.0
-Flask==3.0.3
+Flask==3.1.1
 googleapis-common-protos==1.70.0
 grpcio==1.64.1
 idna==3.7
