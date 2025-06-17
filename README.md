@@ -140,6 +140,18 @@ curl 'http://127.0.0.1:3000/add?first=6&second=a'
 
 Watch the server and observe that a trace signal is emitted, with info about the exception.
 
+## Mix of services in different languages
+
+Run two services in different languages with auto-instrumentation.
+
+Send a request from one service in one language to another service in another language.
+
+See the trace between them.
+
+## Measuring the overhead
+
+https://coroot.com/blog/opentelemetry-for-go-measuring-the-overhead/
+
 ## Sample All Requests
 
 Sample 100% of requests using [Grafana Tempo](https://grafana.com/oss/tempo/):
