@@ -13,7 +13,7 @@ importlib_metadata==8.6.1
 iniconfig==2.1.0
 itsdangerous==2.2.0
 Jinja2==3.1.6
-MarkupSafe==3.0.2
+MarkupSafe==3.0.3
 mccabe==0.7.0
 opentelemetry-api==1.33.0
 opentelemetry-distro==0.54b0
